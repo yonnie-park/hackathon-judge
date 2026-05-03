@@ -402,11 +402,11 @@ function renderTable() {
     const name = tr.dataset.name;
     tr.addEventListener("click", e => e.stopPropagation());
     tr.querySelectorAll('input[type=range]').forEach(inp => {
-      inp.oninput = () => { inp.nextElementSibling.textContent = inp.value; };
-      inp.onchange = () => {
+      inp.oninput = () => {
+        inp.nextElementSibling.textContent = inp.value;
         setScore(name, inp.dataset.score, parseInt(inp.value, 10));
-        renderTable();
       };
+      inp.onchange = () => renderTable();
     });
     tr.querySelectorAll('button.clear').forEach(b => b.onclick = () => {
       setScore(name, b.dataset.clear, null);
